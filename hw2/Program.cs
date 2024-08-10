@@ -67,6 +67,8 @@ namespace hw2
         }
         static void Task2() 
         {
+            Console.WriteLine("task2");
+
             string input = "late , safari , satellite , acquaintance, late-night-tip";
             List<string> forbiddenwords = new List<string> { "late , safari , satellite" };
 
@@ -82,33 +84,49 @@ namespace hw2
 
             return result;
         }
-        static void Task3() 
+        static void Task3()
         {
+            Console.WriteLine("Task3");
+
             Console.Write("Введіть кількість символів: ");
-            if (int.TryParse(Console.ReadLine(), out int lenght) && lenght > 0)
+            if (int.TryParse(Console.ReadLine(), out int length) && length > 0)
             {
-                string randomString = GenerateRandomString(lenght);
+                string randomString = GenerateRandomString(length);
+                string orderedString = OrderString(randomString);
+
                 Console.Write("Випадковий рядок: ");
                 Console.WriteLine(randomString);
+
+                Console.Write("Впорядкований рядок: ");
+                Console.WriteLine(orderedString);
             }
-            else 
+            else
             {
                 Console.WriteLine("Некоректне введення. Будь ласка, введіть додатнє ціле число.");
             }
         }
-        static string GenerateRandomString(int lenght) 
+
+        static string GenerateRandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             StringBuilder stringBuilder = new StringBuilder();
             Random rand = new Random();
 
-            for (int i = 0; i < lenght; i++) 
+            for (int i = 0; i < length; i++)
             {
                 char randomChar = chars[rand.Next(chars.Length)];
                 stringBuilder.Append(randomChar);
             }
             return stringBuilder.ToString();
         }
+
+        static string OrderString(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Sort(charArray);
+            return new string(charArray);
+        }
+
         static void Task4() 
         {
             int[] array = { 2, 0, 5, 4 };
